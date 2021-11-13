@@ -1,6 +1,8 @@
-const Mongoose = require('mongoose');
+const Mongoose = require("mongoose");
 
-const UserSchema = new Mongoose.Schema({
+const UserSchema = new Mongoose.Schema(
+  {
+    id: Number, // new => Document id'si çok uzun olduğu için diğer dokumanların boyutunu arttıracak
     name: String,
     surname: String,
     username: String,
@@ -22,4 +24,4 @@ const UserSchema = new Mongoose.Schema({
     }
 }, { timestamps: true, versionKey: false });
 
-module.exports = Mongoose.model('users', UserSchema);
+module.exports = Mongoose.model("users", UserSchema);
