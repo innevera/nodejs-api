@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(helmet());
 
 /** connection */ 
-console.log("Server up... \x1b[36m%s\x1b[0m",`http://localhost:[${process.env.APP_PORT}]/`)
+console.log("Server up... \x1b[36m%s\x1b[0m",`http://localhost:${process.env.APP_PORT}/`)
 
 /** Routes */
 for (const [key, value] of Object.entries(Routes)) {
