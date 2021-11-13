@@ -20,8 +20,8 @@ const swaggerOptions = {
     produces: [
         "application/json"
     ],
-    ...paths,
-    ...definitions
+    paths,
+    definitions
 }
 
 module.exports = swaggerOptions;
