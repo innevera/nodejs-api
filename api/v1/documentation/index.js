@@ -1,5 +1,5 @@
 const paths = require('./paths');
-const definitions = require('./definitions');
+const schemas = require('./schemas');
 
 const swaggerOptions = {
     openapi: "3.0.0",
@@ -21,7 +21,7 @@ const swaggerOptions = {
         "application/json"
     ],
     paths,
-    definitions
+    schemas
 }
 
 module.exports = swaggerOptions;

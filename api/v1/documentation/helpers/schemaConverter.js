@@ -1,4 +1,4 @@
-/** Convert Function Types to Swagger */
+/** Convert Mongoose Schema to Swagger Schema */
 
 const ModelConverter = (schema) => { 
     const obj = {...schema};

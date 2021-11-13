@@ -12,7 +12,7 @@ const paths = {
                   description: "User detail",
                   required: true,
                   schema: {
-                    "$ref": "#/definitions/User"
+                    "$ref": "#/schemas/User"
                   }
                 }
             ],
@@ -20,7 +20,7 @@ const paths = {
               200: {
                 description: "OK",
                 schema: {
-                  "$ref": "#/definitions/User"
+                  "$ref": "#/schemas/User"
                 }
               }
             }
@@ -37,7 +37,7 @@ const paths = {
                   description: "User detail",
                   required: true,
                   schema: {
-                    "$ref": "#/definitions/User"
+                    "$ref": "#/schemas/User"
                   }
                 }
             ],
@@ -45,7 +45,7 @@ const paths = {
                 200: {
                     description: "OK",
                     schema: {
-                        "$ref": "#/definitions/User"
+                        "$ref": "#/schemas/User"
                     }
                 }
             }
