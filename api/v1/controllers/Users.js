@@ -3,6 +3,7 @@ const httpStatus = require('http-status');
 
 const index = (req, res) => {
     list().then(resp => {
+        res.contentType('application/json');
         res.status(httpStatus.OK).send({
             isSuccess: true,
             isFatal: false,
