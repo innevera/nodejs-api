@@ -5,7 +5,7 @@ const ModelConverter = (model) => {
     Object.keys(schema).map( (key) => {
         schema[key] = converter(schema[key]);
     });
-    return obj = {
+    return {
         type: "object",
         properties: {
             ...schema
