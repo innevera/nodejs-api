@@ -1,3 +1,6 @@
+const paths = require('./paths');
+const definitions = require('./definitions');
+
 const swaggerOptions = {
     openapi: "3.0.0",
     info: {
@@ -17,7 +20,8 @@ const swaggerOptions = {
     produces: [
         "application/json"
     ],
-    paths: {},
-    definitions: {}
+    ...paths,
+    ...definitions
 }
-module.exports =  swaggerOptions;
+
+module.exports = swaggerOptions;

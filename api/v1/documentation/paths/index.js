@@ -1,6 +1,3 @@
-const UserModel = require('../models/User');
-const ModelConverter = require('./helpers/modelConverter');
-
 const paths = {
     "/users" : {
         get: {
@@ -57,16 +54,4 @@ const paths = {
     }
 }
 
-const schema = {
-    User: {
-        type: "object",
-        properties: {
-            ...ModelConverter(UserModel.schema.obj)
-        }
-        
-    }
-};
-module.exports = {
-    swaggerschema: schema,
-    swaggerpaths: paths
-};
+module.exports = paths;

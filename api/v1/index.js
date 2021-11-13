@@ -1,10 +1,10 @@
 const express = require('express')
 const helmet = require('helmet')
-const { server, swaggerOptions} = require('./config')
+const { server } = require('./config')
 const loaders = require('./loaders')
 const { Users } = require('./routes')
 const swagger = require('swagger-ui-express')
-const { swaggerschema, swaggerpaths} = require('./documentation/swaggerui');
+const swaggerOptions = require('./documentation/');
 
 /** Apply default configuration */
 server();
@@ -20,11 +20,6 @@ console.log(`Server up.. [${process.env.APP_PORT}]`)
 app.use('/users', Users)
 
 /** Swagger */
-swaggerOptions.paths = swaggerpaths;
-swaggerOptions.definitions = swaggerschema;
-console.log(swaggerOptions.definitions.User.properties.status)
 app.use('/', swagger.serve, swagger.setup(swaggerOptions))
-
-
 
 module.exports = app;
