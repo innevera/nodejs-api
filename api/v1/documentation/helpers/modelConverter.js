@@ -1,4 +1,5 @@
-/** Function String => 'string' */
+/** Convert Function Types to Swagger */
+
 const ModelConverter = (schema) => { 
     const obj = {...schema};
     Object.keys(obj).map( (key, val) => {

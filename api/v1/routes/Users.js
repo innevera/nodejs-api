@@ -19,18 +19,18 @@ const userPaths = {
             tags: [
               "Users"
             ],
-            summary: "Get all users in system",
-            "parameters": [
+            summary: "Get all users",
+            parameters: [
                 {
-                  "name": "model",
-                  "in": "body",
-                  "description": "person detail",
-                  "required": true,
-                  "schema": {
+                  name: "model",
+                  in: "body",
+                  description: "User detail",
+                  required: true,
+                  schema: {
                     "$ref": "#/definitions/User"
                   }
                 }
-              ],
+            ],
             responses: {
               200: {
                 description: "OK",
@@ -44,7 +44,18 @@ const userPaths = {
             tags: [
                 "Users"
             ],
-            summary: "Add New User",
+            summary: "Add new user",
+            parameters: [
+                {
+                  name: "model",
+                  in: "body",
+                  description: "User detail",
+                  required: true,
+                  schema: {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+            ],
             responses: {
             200: {
                 description: "OK",
