@@ -3,8 +3,11 @@ const ModelConverter = require('./helpers/modelConverter');
 
 const schema = {
     User: {
-        "type": "object",
-        ...ModelConverter(UserModel.schema.obj)
+        type: "object",
+        properties: {
+            ...ModelConverter(UserModel.schema.obj)
+        }
+        
     }
 };
 module.exports = schema;

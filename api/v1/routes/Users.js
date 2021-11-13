@@ -14,12 +14,23 @@ router.get('/', index)
 router.route('/').post(validate(schema.createValidation), create)
 
 const userPaths = {
-    '/users' : {
+    "/users" : {
         get: {
             tags: [
               "Users"
             ],
             summary: "Get all users in system",
+            "parameters": [
+                {
+                  "name": "model",
+                  "in": "body",
+                  "description": "person detail",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              ],
             responses: {
               200: {
                 description: "OK",
@@ -29,23 +40,18 @@ const userPaths = {
               }
             }
         },
-        'post': {
-            summary: "Add New User",
+        "post": {
             tags: [
                 "Users"
             ],
-            parameters: {
-                name: "body",
-                description: "Created user object",
-                required: true,
-                schema: {
-                    "$ref": "#/schema/User"
-                }
-            },
+            summary: "Add New User",
             responses: {
-                '201': {
-                    description: "Created"
+            200: {
+                description: "OK",
+                schema: {
+                "$ref": "#/definitions/User"
                 }
+            }
             }
             
         },
