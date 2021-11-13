@@ -2,8 +2,8 @@
 
 const ModelConverter = (schema) => { 
     const obj = {...schema};
-    Object.keys(obj).map( (key, val) => {
-        obj[key] = {type: converter(obj[key])};
+    Object.keys(obj).map( (key) => {
+        obj[key] = converter(obj[key]);
     });
     return obj;
 }
@@ -11,11 +11,13 @@ const ModelConverter = (schema) => {
 const converter = (val) => {
     switch(val){
         case String: case Date:
-            return 'string';
+            return {type: 'string'};
         case Number:
-            return 'integer';
+            return {type: 'integer'};
+        case Boolean:
+            return {type: 'boolean'};
         default:
-            return 'object';
+            return {type: 'object'};
     }
 }
 
