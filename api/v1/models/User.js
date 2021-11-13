@@ -5,11 +5,21 @@ const UserSchema = new Mongoose.Schema({
     surname: String,
     username: String,
     email: String,
+    phone: String,
     password: String,
-    image: String,
+    media: Number,
     role: Number,
-    active: Boolean,
-    deleted: Boolean
+    lastLoggedInAt: Date,
+    status: {
+        active: {
+            approve: { type: Boolean, default: true },
+            updatedAt: Date
+        },
+        deleted: {
+            approve: { type: Boolean, default: false },
+            updatedAt: Date
+        }
+    }
 }, { timestamps: true, versionKey: false });
 
 module.exports = Mongoose.model('users', UserSchema);
