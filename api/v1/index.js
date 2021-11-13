@@ -6,13 +6,11 @@ const { Users } = require('./routes')
 const swagger = require('swagger-ui-express')
 const swaggerSchema = require('./documentation/swaggerui');
 
-const swaggerOpt = Object.assign(swaggerOptions, swaggerSchema);
+swaggerOptions.paths = Users.userPaths;
+swaggerOptions.definitions = swaggerSchema;
 
-switch(swaggerSchema.swaggerschema.User.name){
-    case String:
-        console.log('string');
-}
-console.log(swaggerSchema.swaggerschema.User.name)
+
+console.log(swaggerOptions)
 /** Apply default configuration */
 server();
 loaders();
@@ -24,8 +22,8 @@ app.use(helmet());
 
 // connection
 console.log(`Server up.. [${process.env.APP_PORT}]`)
-app.use('/users', Users)
-app.use('/', swagger.serve, swagger.setup(swaggerOpt))
+app.use('/users', Users.router)
+app.use('/', swagger.serve, swagger.setup(swaggerOptions))
 
 
 

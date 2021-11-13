@@ -1,11 +1,10 @@
 const UserModel = require('../models/User');
+const ModelConverter = require('./helpers/modelConverter');
 
 const schema = {
-    swaggerschema: {
-        User: {
-            ...UserModel.schema.obj
-        }
-    } 
+    User: {
+        "type": "object",
+        ...ModelConverter(UserModel.schema.obj)
+    }
 };
-
 module.exports = schema;
