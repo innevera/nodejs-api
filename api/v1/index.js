@@ -2,7 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const { server } = require('./config')
 const loaders = require('./loaders')
-const { Users } = require('./routes')
+const Routes = require('./routes')
 const swagger = require('swagger-ui-express')
 const swaggerOptions = require('./documentation/');
 
@@ -17,7 +17,11 @@ app.use(helmet());
 
 /** connection */ 
 console.log(`Server up.. [${process.env.APP_PORT}]`)
-app.use('/users', Users)
+
+/** Routes */
+for (const [key, value] of Object.entries(Routes)) {
+    app.use(key, value)
+}
 
 /** Swagger */
 app.use('/', swagger.serve, swagger.setup(swaggerOptions))
