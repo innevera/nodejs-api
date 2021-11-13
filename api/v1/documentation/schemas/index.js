@@ -1,5 +1,5 @@
 const UserModel = require('../../models/User');
-const schemaConverter = require('../helpers/schemaConverter');
+const converter = require('../helpers/schemaConverter');
 
 /**
  * key = schema name
@@ -7,6 +7,6 @@ const schemaConverter = require('../helpers/schemaConverter');
  */
 const schemas = {
     // User Schema
-    User: schemaConverter(UserModel.schema.obj)
+    User: converter(UserModel.schema.obj)
 };
 module.exports = schemas;
