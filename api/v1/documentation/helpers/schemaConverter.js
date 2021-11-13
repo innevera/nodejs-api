@@ -1,6 +1,7 @@
 /** Convert Mongoose Schema to Swagger Schema */
 
-const ModelConverter = (schema) => { 
+const ModelConverter = (model) => { 
+    const schema = model.schema.obj;
     Object.keys(schema).map( (key) => {
         schema[key] = converter(schema[key]);
     });

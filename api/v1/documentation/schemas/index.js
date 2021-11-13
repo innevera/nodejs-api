@@ -3,10 +3,10 @@ const converter = require('../helpers/schemaConverter');
 
 /**
  * key = schema name
- * value = schemaConverter(Model.schema.obj)
+ * value = schemaConverter(Model)
  */
 const schemas = {
     // User Schema
-    User: converter(UserModel.schema.obj)
+    User: converter(UserModel)
 };
 module.exports = schemas;
