@@ -5,11 +5,16 @@ const insert = data => {
     return users.save()
 }
 
-const list = () => {
-    return User.find({})
+const list = (query, paging) => {
+    return User.find(query, [], paging)
+}
+
+const total_doc = (query) => {
+    return User.count(query);
 }
 
 module.exports = {
     insert,
-    list
+    list,
+    total_doc
 }
