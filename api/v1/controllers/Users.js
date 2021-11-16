@@ -1,5 +1,6 @@
 const { insert, list } = require('../services/Users')
 const httpStatus = require('http-status');
+const { cryptedPass } = require('../scripts/utils')
 
 const index = (req, res) => {
     list().then(resp => {
@@ -16,6 +17,7 @@ const index = (req, res) => {
 }
 
 const create = (req, res) => {
+    req.body.password = cryptedPass(req.body.password);
     insert(req.body)
         .then(resp => {
             res.status(httpStatus.CREATED).send(resp)

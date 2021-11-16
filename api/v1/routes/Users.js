@@ -2,16 +2,16 @@ const express = require('express')
 const router = express.Router();
 /** Middlewares */
 const validate = require('../middleware/validate')
-    /** Validations */
+/** Validations */
 const { validation } = require('../validations/Users')
-    /** Controller */
+/** Controller */
 const { index, create } = require('../controllers/Users')
 
-/** GET */
+/** Get */
 router.get('/', index)
 
-/** POST */
+/** Post */
 router.route('/').post(validate(validation.create), create)
 
-/** EXPORT */
+/** Export */
 module.exports = router;
