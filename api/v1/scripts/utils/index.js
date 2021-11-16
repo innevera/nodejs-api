@@ -1,7 +1,7 @@
-const { cryptedPass } = require('./Crypto');
+const useCrypto = require('./useCrypto');
 const usePaging = require('./usePaging')
 
 module.exports = {
-    cryptedPass,
+    useCrypto,
     usePaging
 }

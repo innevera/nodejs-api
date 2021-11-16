@@ -9,12 +9,12 @@ const list = (query, paging) => {
     return User.find(query, [], paging)
 }
 
-const total_doc = (query) => {
+const total = (query) => {
     return User.count(query);
 }
 
 module.exports = {
     insert,
     list,
-    total_doc
+    total
 }

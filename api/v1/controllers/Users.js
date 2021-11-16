@@ -1,6 +1,6 @@
-const { insert, list, total_doc } = require('../services/Users')
+const { insert, list, total } = require('../services/Users')
 const httpStatus = require('http-status');
-const { cryptedPass, usePaging } = require('../scripts/utils');
+const { useCrypto, usePaging } = require('../scripts/utils');
 
 
 const index = (req, res) => {
@@ -9,12 +9,12 @@ const index = (req, res) => {
     list(query, paging)
         .then(response => {
             /** Get Total Document Count */
-            total_doc(query).then(total => {
+            total(query).then(count => {
                 res.status(httpStatus.OK).send({
                     Users: Object.values(response),
                     IsSuccess: true,
                     IsFatal: false,
-                    Total: total,
+                    Total: count,
                     Skip: paging?.skip || 0,
                     Limit: paging.limit,
                     Page: Number(query.page) || 1
@@ -27,7 +27,7 @@ const index = (req, res) => {
 }
 
 const create = (req, res) => {
-    req.body.password = cryptedPass(req.body.password);
+    req.body.password = useCrypto(req.body.password);
     insert(req.body)
         .then(response => {
             res.status(httpStatus.CREATED).send(response)
