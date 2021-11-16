@@ -1,7 +1,7 @@
 const { insert, list, total } = require('../services/Users')
 const httpStatus = require('http-status');
 const { useCrypto, usePaging } = require('../scripts/utils');
-
+const { GET_SUCCESS } = require('../scripts/utils/useResponseStatus')
 
 const index = (req, res) => {
     const query = req.query;
@@ -12,12 +12,7 @@ const index = (req, res) => {
             total(query).then(count => {
                 res.status(httpStatus.OK).send({
                     Users: Object.values(response),
-                    IsSuccess: true,
-                    IsFatal: false,
-                    Total: count,
-                    Skip: paging?.skip || 0,
-                    Limit: paging.limit,
-                    Page: Number(query.page) || 1
+                    ...GET_SUCCESS({ query, paging, count })
                 })
             })
         })

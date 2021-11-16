@@ -2,7 +2,7 @@ const usePaging = (query) => {
     const { page, limit } = query;
 
     /** Initialize Paging Options */
-    const paging = { limit: 3 };
+    const paging = { limit: 15 };
 
     if (limit && !isNaN(limit))
         paging.limit = Number(limit);
