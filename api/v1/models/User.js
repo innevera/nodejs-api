@@ -1,7 +1,6 @@
 const Mongoose = require("mongoose");
 
-const UserSchema = new Mongoose.Schema(
-  {
+const UserSchema = new Mongoose.Schema({
     id: Number, // new => Document id'si çok uzun olduğu için diğer dokumanların boyutunu arttıracak
     name: String,
     surname: String,
