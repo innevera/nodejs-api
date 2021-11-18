@@ -5,7 +5,7 @@ const validate = (schema) => (req, res, next) => {
     if (error) {
         const errorMessage = error.details?.map(detail => detail.message).join(', ')
         res.status(httpStatus.BAD_REQUEST).json({ error: errorMessage })
-        logger.error({                
+        logger.error({             
             message: error
         })
         return

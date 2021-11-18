@@ -28,14 +28,13 @@ const create = (req, res) => {
         .then(response => {
             res.status(httpStatus.CREATED).send(response)
             logger.info({
-                level: 'info',
                 message: req.body
             })
         })
         .catch(err => {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err)
             logger.error({                
-                message: err
+                message: req.body
             })
         })
 }
