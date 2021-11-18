@@ -2,6 +2,7 @@ const { insert, list, total } = require('../services/Users')
 const httpStatus = require('http-status');
 const { useCrypto, usePaging } = require('../scripts/utils');
 const { GET_SUCCESS } = require('../scripts/utils/useResponseStatus')
+const logger = require('../scripts/logger/Users')
 
 const index = (req, res) => {
     const query = req.query;
@@ -26,6 +27,10 @@ const create = (req, res) => {
     insert(req.body)
         .then(response => {
             res.status(httpStatus.CREATED).send(response)
+            logger.log({
+                level: 'info',
+                message: req.body
+            })
         })
         .catch(err => {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err)
