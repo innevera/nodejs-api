@@ -1,27 +1,25 @@
 const winston = require("winston");
+require('winston-daily-rotate-file');
 
 
-// Logging levels in winston conform to the severity ordering specified by from most important to least important._
-const levels = { 
-  error: 0,
-  warn: 1,
-  info: 2,
-  http: 3,
-  verbose: 4,
-  debug: 5,
-  silly: 6
-};
+var transport = new winston.transports.DailyRotateFile({
+  dirname: 'api/v1/logs/',
+  filename: 'application-%DATE%.log',
+  datePattern: 'YYYY-MM-DD',
+  zippedArchive: true,
+  maxSize: '20m',
+  maxFiles: '30d'
+});
 
+/*transport.on('rotate', function(oldFilename, newFilename) {
+  // do something fun
+});*/
 
-const logger = winston.createLogger({
-    levels: levels,
-    format: winston.format.json(),
-    defaultMeta: { service: 'user-service', ip: "127.000.000", date: new Date() },
-    transports: [
-      new winston.transports.File({ filename: 'api/v1/logs/error.log', level: 'error' }),
-      new winston.transports.File({ filename: 'api/v1/logs/info.log', level: 'info' }),
-      new winston.transports.File({ filename: 'api/v1/logs/combined.log' }),
-    ],
-  });
+var logger = winston.createLogger({
+  defaultMeta: { ip: '127.000.000' , date: new Date() },
+  transports: [
+    transport
+  ]
+});
 
-  module.exports = logger;
+  module.exports = logger; 
