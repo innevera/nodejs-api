@@ -7,6 +7,6 @@ const converter = require('../helpers/schemaConverter');
  */
 const schemas = {
     // User Schema
-    User: converter(UserModel)
+    "users": converter(UserModel)
 };
 module.exports = schemas;

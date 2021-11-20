@@ -11,7 +11,7 @@ const swaggerOptions = {
     servers: [
         {
             url: "/",
-            description: "Main Url"
+            description: "V1"
         }
     ],
     consumers: [

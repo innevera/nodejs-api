@@ -1,63 +1,54 @@
-const paths = {
-    "/users": {
-        get: {
-            tags: [
-                "Users"
-            ],
-            summary: "Get all users",
-            parameters: [{
-                    name: "model",
-                    in: "body",
-                    description: "User detail",
-                    required: true,
-                    schema: {
-                        "$ref": "#/schemas/User"
+const routes = require("../../routes");
+
+const paths = Object.assign( {}, 
+    ...Object.entries(routes).map(
+        ([path]) => ({
+            [path]: {
+                get: {
+                    tags: [path],
+                    summary: `Get all ${path}`,
+                    parameters: [{
+                            name: "Request",
+                            in: "query",
+                            description: "Parameters",
+                            required: true,
+                            schema: {
+                                "$ref": `#/schemas${path}`
+                            }
+                        },
+                    ],
+                    responses: {
+                        200: {
+                            schema: {
+                                "$ref": `#/schemas${path}`
+                            }
+                        }
                     }
                 },
-                {
-                    name: "id",
-                    in: "query",
-                    schema: {
-                        type: "integer",
-                        minimum: 0,
-                        default: 0
+                post: {
+                    tags: [path],
+                    summary: `Add new ${path}`,
+                    parameters: [{
+                        name: "Request",
+                        in: "body",
+                        description: "Parameters",
+                        required: true,
+                        schema: {
+                            "$ref": `#/schemas${path}`
+                        }
+                    }],
+                    responses: {
+                        200: {
+                            schema: {
+                                "$ref": `#/schemas${path}`
+                            }
+                        }
                     }
-                }
-            ],
-            responses: {
-                200: {
-                    description: "OK",
-                    schema: {
-                        "$ref": "#/schemas/User"
-                    }
-                }
+        
+                },
             }
-        },
-        "post": {
-            tags: [
-                "Users"
-            ],
-            summary: "Add new user",
-            parameters: [{
-                name: "model",
-                in: "body",
-                description: "User detail",
-                required: true,
-                schema: {
-                    "$ref": "#/schemas/User"
-                }
-            }],
-            responses: {
-                200: {
-                    description: "OK",
-                    schema: {
-                        "$ref": "#/schemas/User"
-                    }
-                }
-            }
-
-        },
-    }
-}
+        })
+    )
+);
 
 module.exports = paths;

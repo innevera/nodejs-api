@@ -1,8 +1,7 @@
 const Users = require('./Users');
 
 const Routes = {
-    '/users' : Users,
-    //'/test' : Users
+    '/users' : Users
 }
 
 //module.exports.Users = require('./Users')
