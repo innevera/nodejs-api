@@ -1,24 +1,23 @@
 const Mongoose = require("mongoose");
 
 const UserSchema = new Mongoose.Schema({
-    id: Number, // new => Document id'si çok uzun olduğu için diğer dokumanların boyutunu arttıracak
     name: String,
     surname: String,
     username: String,
     email: String,
     phone: String,
     password: String,
-    media: Number,
-    role: Number,
-    lastLoggedInAt: Date,
+    media: String,
+    role: { type: Number, default: 0},
+    lastLoggedInAt: { type: Date, default: null},
     status: {
         active: {
             approve: { type: Boolean, default: true },
-            updatedAt: Date
+            updatedAt: { type: Date, default: new Date() }
         },
         deleted: {
             approve: { type: Boolean, default: false },
-            updatedAt: Date
+            updatedAt: { type: Date, default: new Date() }
         }
     }
 }, { timestamps: true, versionKey: false });
