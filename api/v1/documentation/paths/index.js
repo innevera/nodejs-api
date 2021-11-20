@@ -28,17 +28,18 @@ const paths = Object.assign( {},
                 post: {
                     tags: [path],
                     summary: `Add new ${path}`,
-                    parameters: [{
-                        name: "Request",
-                        in: "body",
-                        description: "Parameters",
+                    requestBody : {
                         required: true,
-                        schema: {
-                            "$ref": `#/schemas${path}`
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    "$ref": `#/schemas${path}`
+                                }
+                            }
                         }
-                    }],
+                    },
                     responses: {
-                        200: {
+                        201: {
                             schema: {
                                 "$ref": `#/schemas${path}`
                             }

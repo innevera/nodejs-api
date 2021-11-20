@@ -8,6 +8,7 @@ const UserSchema = new Mongoose.Schema({
     phone: String,
     password: String,
     media: String,
+    platform: { type: Number, default: 0},
     role: { type: Number, default: 0},
     lastLoggedInAt: { type: Date, default: null},
     status: {

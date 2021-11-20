@@ -9,7 +9,7 @@ const validation = {
         username: Joi.string().required().min(4),
         password: Joi.string().required().min(6),
         email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: false } }),
-        phone: Joi.string().length(10).pattern(/^[0-9]+$/).required(), // only TR phones
+        phone: Joi.string(), // only TR phones
         media: Joi.string(),
         //role: Number,
     })
