@@ -10,7 +10,7 @@ const list = (query, paging) => {
 }
 
 const userLogin = data => {
-    return User.findOne(data);
+    return User.findOne(data)
 }
 
 const total = (query) => {
