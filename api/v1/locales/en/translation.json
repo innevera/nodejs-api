@@ -1,0 +1,5 @@
+{
+    "auth": {
+        "token_error": "Please authorize to access your account"
+    }
+}

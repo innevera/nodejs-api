@@ -27,8 +27,11 @@ const login = (req, res) => {
     req.body.password = useCrypto(req.body.password);
     userLogin(req.body)
         .then(user => {
-            if (!user)
-                return res.status(httpStatus.NOT_FOUND).send({ message: "User not found!" })
+            if (!user) {
+                return res.status(httpStatus.NOT_FOUND)
+                    .send({ message: "User not found!" })
+            }
+
             user = {
                 ...user.toObject(),
                 tokens: {

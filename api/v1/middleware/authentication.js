@@ -7,7 +7,7 @@ const authToken = (req, res, next) => {
         return res.status(httpStatus.UNAUTHORIZED).send({
             error: {
                 name: "JsonWebTokenError",
-                message: "Please authorize to access your account"
+                message: req.t('auth.token_error')
             }
         });
 
