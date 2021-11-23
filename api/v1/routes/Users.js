@@ -1,21 +1,23 @@
+/** ExpressJS */
 const express = require('express');
 const router = express.Router();
 /** Middlewares */
+const authenticate = require("../middleware/authentication");
 const validate = require('../middleware/validate');
 /** Validations */
 const { validation } = require('../validations/Users');
 /** Controller */
 const { index, create, login } = require('../controllers/Users');
-/** Authentication */
-const authenticate = require("../middleware/authentication");
+
+
 /** Get */
 router.route('/').get(authenticate, index);
 
 /** Post */
-router.route('/').post(validate(validation.create), create);
+router.route('/').post(authenticate, validate(validation.create), create);
 
 /** Login */
-router.route("/login").post(login);
+router.route("/login").post(validate(validation.login), login);
 
-/** Export */
+/** Exports */
 module.exports = router;

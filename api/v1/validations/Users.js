@@ -12,6 +12,10 @@ const validation = {
         phone: Joi.string(), // only TR phones
         media: Joi.string(),
         //role: Number,
+    }),
+    login: Joi.object({
+        username: Joi.string().required().min(4),
+        password: Joi.string().required().min(6)
     })
 }
 

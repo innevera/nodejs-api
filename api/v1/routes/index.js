@@ -1,9 +1,9 @@
 const Users = require('./Users');
 
-/* Used in Documentation and app index */
+/** Used in Documentation and app index */
 const Routes = {
-    '/users' : Users
+    '/users': Users
 }
 
-//module.exports.Users = require('./Users')
+/** Exports */
 module.exports = Routes;
