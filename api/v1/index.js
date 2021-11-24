@@ -48,12 +48,6 @@ Object.keys(Routes).map((key) => {
     app.use(key, Routes[key])
 })
 
-app.get('/greeting', (req, res) => {
-    const response = req.t('token_error');
-    res.status(200);
-    res.send(response);
-});
-
 /** Swagger */
 app.use('/', swagger.serve, swagger.setup(swaggerOptions))
 
