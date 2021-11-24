@@ -1,5 +1,8 @@
 {
     "auth": {
         "token_error": "Please authorize to access your account"
+    },
+    "user": {
+        "not_found": "User not found!"
     }
 }

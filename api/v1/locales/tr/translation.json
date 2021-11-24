@@ -1,5 +1,8 @@
 {
     "auth": {
         "token_error": "Lütfen hesabınıza erişme yetkisi verin"
+    },
+    "user": {
+        "not_found": "Kayıtlı kullanıcı bulunamadı!"
     }
 }

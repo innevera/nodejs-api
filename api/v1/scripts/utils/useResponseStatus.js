@@ -17,6 +17,16 @@ const DELETE_SUCCESS = (message) => {
     }
 }
 
+const NOT_FOUND = (message) => {
+    return {
+        IsSuccess: false,
+        IsFatal: false,
+        Message: message
+    }
+}
+
 module.exports = {
-    GET_SUCCESS, DELETE_SUCCESS
+    GET_SUCCESS,
+    DELETE_SUCCESS,
+    NOT_FOUND
 }

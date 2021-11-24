@@ -2,7 +2,7 @@ const { insert, list, userLogin, total } = require('../services/Users');
 const httpStatus = require('http-status');
 const { generateToken, refreshToken } = require('../scripts/utils/useJWT');
 const { useCrypto, usePaging } = require('../scripts/utils');
-const { GET_SUCCESS } = require('../scripts/utils/useResponseStatus');
+const { GET_SUCCESS, NOT_FOUND } = require('../scripts/utils/useResponseStatus');
 const logger = require('../scripts/logger/Users');
 
 const index = (req, res) => {
@@ -27,10 +27,10 @@ const login = (req, res) => {
     req.body.password = useCrypto(req.body.password);
     userLogin(req.body)
         .then(user => {
-            if (!user) {
-                return res.status(httpStatus.NOT_FOUND)
-                    .send({ message: "User not found!" })
-            }
+            if (!user)
+                return res.status(httpStatus.OK).send({
+                    ...NOT_FOUND(req.t('user.not_found'))
+                })
 
             user = {
                 ...user.toObject(),
