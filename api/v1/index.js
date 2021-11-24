@@ -12,9 +12,13 @@ const { i18next, i18nextMiddleware } = require('./config/i18next');
 const swagger = require('swagger-ui-express');
 const swaggerOptions = require('./documentation/');
 
+
 /** Apply default configuration */
 server();
 loaders();
+
+/** Environment */
+const { API, APP_PORT } = process.env;
 
 /** Express settings  */
 const app = express();
@@ -40,12 +44,12 @@ app.use(helmet());
 app.use(i18nextMiddleware.handle(i18next));
 
 /** connection */
-console.log("Server up... \x1b[36m%s\x1b[0m", `http://localhost:${process.env.APP_PORT}/`)
-//console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${process.env.APP_PORT}/`)
+console.log("Server up... \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
+//console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
 
 /** Routes */
 Object.keys(Routes).map((key) => {
-    app.use(key, Routes[key])
+    app.use(`/api/${API}${key}`, Routes[key])
 })
 
 /** Swagger */

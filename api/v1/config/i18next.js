@@ -13,7 +13,7 @@ i18next
     .use(i18nextMiddleware.LanguageDetector)
     .init({
         debug: process.env.DEBUG,
-        fallbackLng: 'en',
+        fallbackLng: 'tr',
         backend: {
             /** path where resources get loaded from */
             loadPath: join(__dirname, '../locales/{{lng}}/translation.json')
