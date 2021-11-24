@@ -40,7 +40,11 @@ const login = (req, res) => {
                 }
             }
             delete user.password;
-            res.status(httpStatus.OK).send(user)
+            res.status(httpStatus.OK).send({
+                ...user,
+                IsSuccess: true,
+                IsFatal: false,
+            })
         })
         .catch(e => res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e))
 }
