@@ -1,6 +1,6 @@
 {
     "auth": {
-        "token_error": "Lütfen hesabınıza erişme yetkisi verin"
+        "token_error": "Eksik veya geçersiz token"
     },
     "user": {
         "not_found": "Kayıtlı kullanıcı bulunamadı!"

@@ -1,3 +1,4 @@
+/** Models */
 const User = require('../models/User');
 
 const insert = data => {

@@ -48,12 +48,10 @@ console.log("Server up... \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
 //console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
 
 /** Routes */
-Object.keys(Routes).map((key) => {
-    app.use(`/api/${API}${key}`, Routes[key])
-})
+Routes.map(({ direction, path }) => app.use(`/api/${API}${path}`, direction))
 
 /** Swagger */
-app.use('/', swagger.serve, swagger.setup(swaggerOptions))
+app.use(`/api/${API}/`, swagger.serve, swagger.setup(swaggerOptions))
 
 /** Exports */
 module.exports = app;
