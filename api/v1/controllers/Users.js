@@ -59,7 +59,7 @@ const login = (req, res) => {
             /** Delete "password" from user result object */
             delete user.password;
             res.status(httpStatus.OK).send({
-                ...user,
+                User: user,
                 IsSuccess: true,
                 IsFatal: false,
             })
