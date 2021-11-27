@@ -45,7 +45,7 @@ app.use(i18nextMiddleware.handle(i18next));
 
 /** connection */
 console.log("Server up... \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
-//console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
+console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/api/${API}/`)
 
 /** Routes */
 Routes.map(({ direction, path }) => app.use(`/api/${API}${path}`, direction))

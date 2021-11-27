@@ -1,8 +1,8 @@
 /** Convert Mongoose Schema to Swagger Schema */
 
-const ModelConverter = (model) => { 
+const ModelConverter = (model) => {
     const schema = model.schema.obj;
-    Object.keys(schema).map( (key) => {
+    Object.keys(schema).map((key) => {
         schema[key] = converter(schema[key]);
     });
     return {
@@ -14,15 +14,19 @@ const ModelConverter = (model) => {
 }
 
 const converter = (val) => {
-    switch(val){
+    switch (val) {
         case String: case Date:
-            return {type: 'string'};
+            return { type: 'string' }
         case Number:
-            return {type: 'integer'};
+            return { type: 'integer' }
         case Boolean:
-            return {type: 'boolean'};
+            return { type: 'boolean' }
+        case Array:
+            return { type: 'array', items: { type: 'string' } }
+        case Object:
+            return { type: 'object' }
         default:
-            return {type: 'object'};
+            return { type: 'object' }
     }
 }
 
