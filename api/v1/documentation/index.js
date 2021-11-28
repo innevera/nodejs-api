@@ -11,8 +11,8 @@ dotenv.config();
 const { BASE_URL, APP_PORT, API } = process.env;
 
 const swaggerDocument = {
-    // openapi: "3.0.0",
-    swagger: "2.0",
+    openapi: "3.0.1",
+    // swagger: "2.0",
     info: {
         title: "Node-Server Api Documentation",
         version: "1.0.0",

@@ -42,7 +42,8 @@ const swaggerOptions = {
                 200: {
                     schema: { "$ref": `#/schemas${path}` }
                 }
-            }
+            },
+            security: [{ bearerAuth: [] }]
         },
         post: {
             tags: ['User'],
