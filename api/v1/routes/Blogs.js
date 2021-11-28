@@ -24,7 +24,7 @@ const swaggerOptions = {
     [`/api/v1${path}`]: {
         get: {
             tags: ['Blog'],
-            summary: `Get all Blogs`,
+            summary: `Get single/all Blog(s)`,
             parameters: [{
                 name: "Request",
                 in: "query",
@@ -101,5 +101,6 @@ const swaggerOptions = {
 /** Exports */
 module.exports = {
     router,
+    path,
     swaggerOptions
 };

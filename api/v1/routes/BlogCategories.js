@@ -5,29 +5,26 @@ const router = express.Router();
 const authenticate = require("../middleware/authentication");
 const validate = require('../middleware/validate');
 /** Validations */
-const { validation } = require('../validations/Users');
+const { validation } = require('../validations/BlogCategories');
 /** Controller */
-const { index, create, login } = require('../controllers/Users');
-
+const { index, create, remove } = require('../controllers/Blogs');
 
 /** Get */
 router.route('/').get(authenticate, index);
 
 /** Post */
 router.route('/').post(authenticate, validate(validation.create), create);
-
-/** Login */
-router.route("/login").post(validate(validation.login), login);
+router.route('/').post(authenticate, validate(validation.remove), remove);
 
 /** Route path */
-const path = '/users';
+const path = '/blogcategories';
 
 /** Swagger Documentation Options */
 const swaggerOptions = {
     [`/api/v1${path}`]: {
         get: {
-            tags: ['User'],
-            summary: `Get all Users`,
+            tags: ['Blog Categories'],
+            summary: `Get single/all Blog Categor(y)ies`,
             parameters: [{
                 name: "Request",
                 in: "query",
@@ -42,12 +39,11 @@ const swaggerOptions = {
                 200: {
                     schema: { "$ref": `#/schemas${path}` }
                 }
-            },
-            security: [{ bearerAuth: [] }]
+            }
         },
         post: {
-            tags: ['User'],
-            summary: `Add new User`,
+            tags: ['Blog Categories'],
+            summary: `Add new Blog Category`,
             requestBody: {
                 required: true,
                 content: {
@@ -63,9 +59,9 @@ const swaggerOptions = {
             },
             security: [{ bearerAuth: [] }]
         },
-        /*put: {
-            tags: ['User'],
-            summary: `Update User`,
+        put: {
+            tags: ['Blog Categories'],
+            summary: `Update Blog Category`,
             requestBody: {
                 required: true,
                 content: {
@@ -82,8 +78,8 @@ const swaggerOptions = {
             security: [{ bearerAuth: [] }]
         },
         delete: {
-            tags: ['User'],
-            summary: `Delete User`,
+            tags: ['Blog Categories'],
+            summary: `Delete Blog Category`,
             requestBody: {
                 required: true,
                 content: {
@@ -98,7 +94,7 @@ const swaggerOptions = {
                 }
             },
             security: [{ bearerAuth: [] }]
-        } */
+        }
     }
 }
 

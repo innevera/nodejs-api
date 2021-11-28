@@ -1,12 +1,12 @@
 /** Tools */
 const httpStatus = require('http-status');
 /** Services */
-const { insert, list, total, removeBlog } = require('../services/Blogs');
+const { insert, list, total, removeBlogCategory } = require('../services/BlogCategories');
 /** Utils */
 const { useCrypto, usePaging } = require('../scripts/utils');
 const { GET_SUCCESS } = require('../scripts/utils/useResponseStatus');
 /** Logger */
-const logger = require('../scripts/logger/Blogs');
+const logger = require('../scripts/logger/BlogCategories');
 
 /** Get all blogs as a list */
 const index = (req, res) => {
@@ -18,7 +18,7 @@ const index = (req, res) => {
             total(query)
                 .then(count => {
                     res.status(httpStatus.OK).send({
-                        Blogs: Object.values(response),
+                        BlogCategories: Object.values(response),
                         ...GET_SUCCESS({ query, paging, count })
                     })
 
@@ -36,7 +36,7 @@ const index = (req, res) => {
         })
 }
 
-/** Create a new blog */
+/** Create a new blog category */
 const create = (req, res) => {
     req.body.password = useCrypto(req.body.password);
     insert(req.body)
@@ -54,10 +54,10 @@ const create = (req, res) => {
         })
 }
 
-/** Delete a new blog */
+/** Delete a new blog category */
 const remove = (req, res) => {
     req.body.password = useCrypto(req.body.password);
-    removeBlog(req.body)
+    removeBlogCategory(req.body)
         .then(response => {
             res.status(httpStatus.OK).send(response)
             logger.info({
