@@ -6,11 +6,20 @@ const Blogs = require('./Blogs');
 const Routes = [
     {
         path: '/users',
-        direction: Users,
+        router: Users.router,
+        swaggerOptions: Users.swaggerOptions,
+        swaggerTag: {
+            name: "User",
+            description: "Operations of Users"
+        }
     }, {
         path: '/blogs',
-        direction: Blogs.router,
-        swaggerOptions: Blogs.swaggerOptions
+        router: Blogs.router,
+        swaggerOptions: Blogs.swaggerOptions,
+        swaggerTag: {
+            name: "Blog",
+            description: "Everything about Blogs"
+        }
     }
 ];
 

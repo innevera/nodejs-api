@@ -10,7 +10,7 @@ const Routes = require('./routes');
 const { i18next, i18nextMiddleware } = require('./config/i18next');
 /** Swagger Documentation */
 const swagger = require('swagger-ui-express');
-const swaggerOptions = require('./documentation/');
+const { swaggerDocument, swOptions } = require('./documentation/');
 
 
 /** Apply default configuration */
@@ -48,10 +48,10 @@ console.log("Server up... \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/`)
 console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${APP_PORT}/api/${API}/`)
 
 /** Routes */
-Routes.map(({ direction, path }) => app.use(`/api/${API}${path}`, direction))
+Routes.map(({ router, path }) => app.use(`/api/${API}${path}`, router))
 
 /** Swagger */
-app.use(`/api/${API}/`, swagger.serve, swagger.setup(swaggerOptions))
+app.use(`/api/${API}/`, swagger.serve, swagger.setup(swaggerDocument, swOptions))
 
 /** Exports */
 module.exports = app;
