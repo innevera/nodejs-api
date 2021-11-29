@@ -51,6 +51,7 @@ console.log("Go to Documentation: \x1b[36m%s\x1b[0m", `http://localhost:${APP_PO
 Routes.map(({ router, path }) => app.use(`/api/${API}${path}`, router))
 
 /** Swagger */
+app.use(`/api/${API}/style.css`, (req, res) => res.status(200).sendFile(__dirname + '/documentation/style.css'))
 app.use(`/api/${API}/`, swagger.serve, swagger.setup(swaggerDocument, swOptions))
 
 /** Exports */
