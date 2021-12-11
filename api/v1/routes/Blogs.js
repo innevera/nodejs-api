@@ -7,7 +7,7 @@ const validate = require('../middleware/validate');
 /** Validations */
 const { validation } = require('../validations/Blogs');
 /** Controller */
-const { index, create, remove } = require('../controllers/Blogs');
+const { index, create, update, remove } = require('../controllers/Blogs');
 
 /** Get */
 router.route('/').get(authenticate, index);
@@ -15,6 +15,7 @@ router.route('/').get(authenticate, index);
 /** Post */
 router.route('/').post(authenticate, validate(validation.create), create);
 router.route('/').post(authenticate, validate(validation.remove), remove);
+router.route('/:id').patch(authenticate, validate(validation.update), update)
 
 /** Route path */
 const path = '/blogs';

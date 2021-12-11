@@ -4,5 +4,11 @@
     },
     "user": {
         "not_found": "User not found!"
+    },
+    "blogs": {
+        "id_require": "_id is require!"
+    },
+    "common": {
+        "bad_request": "There was a problem please try again later or contact your system administrator"
     }
 }

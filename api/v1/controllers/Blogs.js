@@ -1,10 +1,10 @@
 /** Tools */
 const httpStatus = require('http-status');
 /** Services */
-const { insert, list, total, removeBlog } = require('../services/Blogs');
+const { list, insert, modify, removeBlog, total } = require('../services/Blogs');
 /** Utils */
 const { useCrypto, usePaging } = require('../scripts/utils');
-const { GET_SUCCESS } = require('../scripts/utils/useResponseStatus');
+const { GET_SUCCESS, NOT_FOUND } = require('../scripts/utils/useResponseStatus');
 /** Logger */
 const logger = require('../scripts/logger/Blogs');
 
@@ -54,27 +54,28 @@ const create = (req, res) => {
         })
 }
 
-/** Delete a new blog */
+/** Delete a blog */
 const remove = (req, res) => {
-    req.body.password = useCrypto(req.body.password);
-    removeBlog(req.body)
-        .then(response => {
-            res.status(httpStatus.OK).send(response)
-            logger.info({
-                message: req.body
-            })
+    // Todo: 
+}
+
+const update = (req, res) => {
+    if (!req.params?.id)
+        return res.status(httpStatus.OK).send({ ...NOT_FOUND(req.t('blogs.id_not_found')) })
+
+    modify(req.body, req.params.id)
+        .then(updated => {
+            res.status(httpStatus.OK).send(updated)
         })
-        .catch(err => {
-            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err)
-            logger.error({
-                message: req.body
-            })
-        })
+        .catch(() => res.status(httpStatus.INTERNAL_SERVER_ERROR).send(
+            req.t('common.bad_request')
+        ))
 }
 
 /** Exports */
 module.exports = {
     index,
     create,
+    update,
     remove
 }

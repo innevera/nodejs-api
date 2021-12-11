@@ -4,5 +4,11 @@
     },
     "user": {
         "not_found": "Kayıtlı kullanıcı bulunamadı!"
+    },
+    "blogs": {
+        "id_require": "_id bilgisi gereklidir!"
+    },
+    "common": {
+        "bad_request": "Bir sorun oluştu, lütfen daha sonra tekrar deneyin veya sistem yöneticinize başvurun."
     }
 }
