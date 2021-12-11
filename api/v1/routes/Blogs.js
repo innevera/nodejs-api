@@ -60,14 +60,14 @@ const swaggerOptions = {
             },
             security: [{ bearerAuth: [] }]
         },
-        put: {
+        delete: {
             tags: ['Blog'],
-            summary: `Update Blog`,
+            summary: `Delete Blog`,
             requestBody: {
                 required: true,
                 content: {
                     "application/json": {
-                        schema: { "$ref": `#/schemas${path}` }
+                        schema: { type: "object", properties: { _id: { type: "number" } } }
                     }
                 }
             },
@@ -77,15 +77,17 @@ const swaggerOptions = {
                 }
             },
             security: [{ bearerAuth: [] }]
-        },
-        delete: {
+        }
+    },
+    [`/api/v1${path}/{_id}`]: {
+        put: {
             tags: ['Blog'],
-            summary: `Delete Blog`,
+            summary: `Update Blog`,
             requestBody: {
                 required: true,
                 content: {
                     "application/json": {
-                        schema: { type: "object", properties: { _id: { type: "number" } } }
+                        schema: { "$ref": `#/schemas${path}` }
                     }
                 }
             },
