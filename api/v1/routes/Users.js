@@ -7,7 +7,7 @@ const validate = require('../middleware/validate');
 /** Validations */
 const { validation } = require('../validations/Users');
 /** Controller */
-const { index, create, login } = require('../controllers/Users');
+const { index, create, login, logout } = require('../controllers/Users');
 
 
 /** Get */
@@ -18,6 +18,8 @@ router.route('/').post(authenticate, validate(validation.create), create);
 
 /** Login */
 router.route("/login").post(validate(validation.login), login);
+
+router.route("/logout").get(logout);
 
 /** Route path */
 const path = '/users';

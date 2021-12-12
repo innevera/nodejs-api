@@ -18,7 +18,9 @@ const UserSchema = new Mongoose.Schema({
     deleted: {
         approve: { type: Boolean, default: false },
         updatedAt: { type: Date, default: new Date() }
-    }
+    },
+    accessToken: String,
+    refreshToke: String
 }, { timestamps: true, versionKey: false });
 
 module.exports = Mongoose.model("user", UserSchema);

@@ -1,7 +1,7 @@
 /** Tools */
 const httpStatus = require('http-status');
 /** Services */
-const { insert, list, userLogin, total } = require('../services/Users');
+const { insert, list, userLogin, userLogout, total } = require('../services/Users');
 /** Utils */
 const { generateToken, refreshToken } = require('../scripts/utils/useJWT');
 const { useCrypto, usePaging } = require('../scripts/utils');
@@ -94,9 +94,28 @@ const create = (req, res) => {
         })
 }
 
+const logout = (req, res) => {
+    userLogout(req.query)
+        .then(user => {
+            console.log(user);
+            res.status(httpStatus.OK).send({
+                User: user,
+                IsSuccess: true,
+                IsFatal: false
+            })
+        }
+        ).catch(e => {
+            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e)
+            logger.error({
+                message: req.body
+            })
+        })
+}
+
 /** Exports */
 module.exports = {
     index,
     login,
+    logout,
     create
 }

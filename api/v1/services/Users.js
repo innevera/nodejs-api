@@ -14,6 +14,11 @@ const userLogin = data => {
     return User.findOne(data)
 }
 
+const userLogout = data => {
+    return User.findOne(data);
+    //console.log(u);
+}
+
 const total = (query) => {
     return User.count(query);
 }
@@ -22,5 +27,6 @@ module.exports = {
     insert,
     list,
     userLogin,
+    userLogout,
     total
 }
